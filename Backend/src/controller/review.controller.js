@@ -26,4 +26,23 @@ const createReview = async (req,res) => {
 
  }
 
- export {createReview}
+ const getReviews = async (req,res) => {
+  try {
+    const productId = req.params.id;
+    if (!productId) {
+      throw new ApiError(400, "Product ID is required");
+    }
+    const reviews = await Review.find({ productId }).populate("userId", "name email");
+
+    if (!reviews) {
+      throw new ApiError(404, "No reviews found for this product");
+    }
+
+    res.status(200).json(new ApiResponse(200, reviews, "Reviews fetched successfully"));
+  } catch (error) {
+    throw new ApiError(500, error.message);
+  }
+}
+
+
+ export {createReview,getReviews}
