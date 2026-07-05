@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand Colors */
+  --color-primary: #FB2E86;        /* Pink */
+  --color-secondary: #7E33E0;      /* Purple */
+
+  /* Text Colors */
+  --color-heading: #151875;        /* Navy Blue */
+  --color-text-secondary: #3F509E; /* Off Navy Blue */
+
+  /* Background Colors */
+  --color-background:linear-gradient(to left, #F1F0FF, #F3F9FF);      /* Sky Blue */
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #EEEFFB;    /* Off Blue */
+
+  /* Accent Colors */
+  --color-accent-light: #E0D3F5;   /* Pantone Purple */
+  --color-accent-medium: #9F63B5;  /* Off Purple */
+  --color-accent-dark: #2F1AC4;    /* Blue */
+
+  /* Status Colors */
+  --color-danger: #FF2A5A;         /* Red */
+
+   --header-text: 34px;
+
+
+}

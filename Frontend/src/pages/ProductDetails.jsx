@@ -1,0 +1,76 @@
+import React from "react";
+import ProductSection from "../components/Sections/ProductSecton";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import api from "../api/axios.js";
+
+function ProductDetails() {
+  const { productId } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+ 
+
+    const fetchProducts = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await api.get(`/products/${productId}`, {
+       
+        });
+        setProduct(response.data.data[0]);
+        setLoading(false);
+      } catch (err) {
+            console.log(error,"error message")
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+
+    
+  }, [productId]); 
+  if (loading) {
+    return (
+      <section className="flex flex-col justify-center mt-15 gap-9">
+        Loading...
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="flex flex-col justify-center mt-15 gap-9">
+        <p className="text-red-500">Error: {error}</p>
+      </section>
+    );
+  }
+
+ 
+  if (!product) {
+    return (
+      <section className="flex flex-col justify-center mt-15 gap-9">
+        <p className="text-red-500">Product not found.</p>
+      </section>
+    );
+  }
+
+  return (
+    <section>
+      <ProductSection
+        images={product?.images}
+        price={product?.price}
+        name={product?.productName}
+        description={product?.productDescription}
+        category={product?.category}
+        tags={product?.tags}
+      />
+    </section>
+  );
+}
+
+export default ProductDetails;
