@@ -21,3 +21,5 @@ const productOrderSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+export default mongoose.model("ProductOrder", productOrderSchema);
