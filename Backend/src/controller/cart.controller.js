@@ -1,13 +1,15 @@
 import ProductOrder from "../model/productOrder.js";
-import ApiResponse from "../utils/ApiResponse.js";
-import ApiError from "../utils/ApiError.js";
-import Product from "../model/product.js";
+import { ApiError } from "../utils/apiError.js";
+import { ApiResponse } from "../utils/apiResonce.js";
+import { Product } from "../model/product.model.js";
+import mongoose from "mongoose";
 
 const addToCartOrWishlist = async (req, res) => {
   try {
-    const prodictId = req.params.productId;
+   
+    const productId = new mongoose.Types.ObjectId(req.params.productId);
+
     const quantity = req.query.quantity;
-    const product = await Product.findById(productId);
     const userId = req.user._id;
     const wishlist = req.query.wishlist === "true" ? true : false;
     if (!product) {
@@ -27,11 +29,12 @@ const addToCartOrWishlist = async (req, res) => {
       .status(201)
       .json(new ApiResponse(201, productOrder, "Product added to cart"));
   } catch (error) {
+    console.log(error, "error at Addtocartorwishlist controller");
     res.status(500).json(new ApiResponse(500, null, "Internal server error"));
   }
 };
 
-const editorDeleteCartItem = async (req, res) => {
+const editOrDeleteCartItem = async (req, res) => {
   try {
     const { productId } = req.params;
 
@@ -75,4 +78,4 @@ const getCartItems = async (req, res) => {
   }
 };
 
-export { addToCart, getCartItems, editorDeleteCartItem };
+export { addToCartOrWishlist, getCartItems, editOrDeleteCartItem };
