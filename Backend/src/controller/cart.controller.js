@@ -5,7 +5,8 @@ import Product from "../model/product.js";
 
 const addToCartOrWishlist = async (req, res) => {
   try {
-    const { productId, quantity } = req.body;
+    const prodictId = req.params.productId;
+    const quantity = req.query.quantity;
     const product = await Product.findById(productId);
     const userId = req.user._id;
     const wishlist = req.query.wishlist === "true" ? true : false;

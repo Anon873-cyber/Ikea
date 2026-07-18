@@ -5,7 +5,7 @@ import { addToCartOrWishlist, editOrDeleteCartItem, getCartItems } from "../cont
 const router = Router();
 
 router.use(verifyJWT);
-router.post("/cart", addToCartOrWishlist);
+router.post("/cart/:productId", addToCartOrWishlist);
 router.put("/cart/:productId", editOrDeleteCartItem);
 router.get("/cart", getCartItems);
 
