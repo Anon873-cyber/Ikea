@@ -12,6 +12,8 @@ const addToCartOrWishlist = async (req, res) => {
     const quantity = req.query.quantity;
     const userId = req.user._id;
     const wishlist = req.query.wishlist === "true" ? true : false;
+    const product = await Product.findById(productId);
+    console.log(product);
     if (!product) {
       throw new ApiError(404, "Product not found");
     }
@@ -25,9 +27,12 @@ const addToCartOrWishlist = async (req, res) => {
     if (!productOrder) {
       throw new ApiError(500, "Failed to add product to cart");
     }
+    
+    const responceQuery = await ProductOrder.findOne({ productId, userId }).populate("productId");
+
     res
       .status(201)
-      .json(new ApiResponse(201, productOrder, "Product added to cart"));
+      .json(new ApiResponse(201, responceQuery, "Product added to cart"));
   } catch (error) {
     console.log(error, "error at Addtocartorwishlist controller");
     res.status(500).json(new ApiResponse(500, null, "Internal server error"));
