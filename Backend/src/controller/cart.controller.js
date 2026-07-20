@@ -6,14 +6,13 @@ import mongoose from "mongoose";
 
 const addToCartOrWishlist = async (req, res) => {
   try {
-   
     const productId = new mongoose.Types.ObjectId(req.params.productId);
 
     const quantity = req.query.quantity;
     const userId = req.user._id;
     const wishlist = req.query.wishlist === "true" ? true : false;
     const product = await Product.findById(productId);
-    console.log(product);
+
     if (!product) {
       throw new ApiError(404, "Product not found");
     }
@@ -27,8 +26,11 @@ const addToCartOrWishlist = async (req, res) => {
     if (!productOrder) {
       throw new ApiError(500, "Failed to add product to cart");
     }
-    
-    const responceQuery = await ProductOrder.findOne({ productId, userId }).populate("productId");
+
+    const responceQuery = await ProductOrder.findOne({
+      productId,
+      userId,
+    }).populate("productId");
 
     res
       .status(201)
@@ -42,7 +44,6 @@ const addToCartOrWishlist = async (req, res) => {
 const editOrDeleteCartItem = async (req, res) => {
   try {
     const { productId } = req.params;
-
     const userId = req.user._id;
     const deleteParams = req.params.delete === "true" ? true : false;
     const product = await Product.findOne(productId, userId);
@@ -55,12 +56,20 @@ const editOrDeleteCartItem = async (req, res) => {
         productId,
         userId,
       });
+
+      res
+        .status(200)
+        .json(new ApiResponse(200, deletedItem, "Product removed from cart"));
+      return;
     }
     const updatedItem = await ProductOrder.findOneAndUpdate(
       { productId, userId },
       { $set: { quantity: req.body.quantity, wishlist: req.body.wishlist } },
       { new: true },
     );
+    res
+      .status(200)
+      .json(new ApiResponse(200, updatedItem, "Product updated in cart"));
   } catch (error) {
     throw new ApiError(500, error.message);
   }
