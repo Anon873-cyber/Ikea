@@ -1,5 +1,6 @@
 import React from "react";
 import ProductSection from "../components/Sections/ProductSecton";
+import MoreProductInfo from "../components/MoreProductInfo/MoreProductInfo.jsx";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import api from "../api/axios.js";
@@ -69,6 +70,7 @@ function ProductDetails() {
         category={product?.category}
         tags={product?.tags}
       />
+      <MoreProductInfo/>
     </section>
   );
 }
