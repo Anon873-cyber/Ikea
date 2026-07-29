@@ -72,7 +72,7 @@ function MoreProductInfo({ productId }) {
 
         {activeTab === "additional-info" && <MoreProductAdditionalInfo />}
 
-        {activeTab === "review" && <ProductReview request={request} />}
+        {activeTab === "review" && <ProductReview review={request} />}
       </div>
     </section>
   );
