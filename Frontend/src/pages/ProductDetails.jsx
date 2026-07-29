@@ -70,7 +70,7 @@ function ProductDetails() {
         category={product?.category}
         tags={product?.tags}
       />
-      <MoreProductInfo/>
+      <MoreProductInfo productId={productId} />
     </section>
   );
 }
