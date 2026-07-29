@@ -2,9 +2,33 @@ import React, { useState } from "react";
 import MoreProductDesc from "../MoreProductDesc/MoreProductDesc";
 import MoreProductAdditionalInfo from "../MoreProductAdditionalInfo/MoreProductAdditionalInfo";
 import ProductReview from "../ProductReview/ProductReview";
+import axios from "../../api/axios.js";
+import { useEffect } from "react";
 
-function MoreProductInfo() {
+function MoreProductInfo({ productId }) {
   const [activeTab, setActiveTab] = useState("description");
+  const [error, setError] = useState(false);
+  const [request, setRequest] = useState(null);
+
+  useEffect(() => {
+    const fetchActiveTab = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/api/v1/products/6a31a0b2f0f1f7c80b721031/review`,
+          {
+            withCredentials: true,
+          },
+        );
+
+        console.log(response, "responce");
+        setRequest(response.data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    fetchActiveTab();
+  }, [activeTab]);
 
   return (
     <section className="MoreProductInfo w-full bg-[#F9F8FE] py-10">
@@ -13,9 +37,7 @@ function MoreProductInfo() {
         <div className="container flex items-center justify-center gap-8">
           <h2
             className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
-              activeTab === "description"
-                ? "underline underline-offset-8"
-                : ""
+              activeTab === "description" ? "underline underline-offset-8" : ""
             }`}
             onClick={() => setActiveTab("description")}
           >
@@ -35,11 +57,9 @@ function MoreProductInfo() {
 
           <h2
             className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
-              activeTab === "reviews"
-                ? "underline underline-offset-8"
-                : ""
+              activeTab === "reviews" ? "underline underline-offset-8" : ""
             }`}
-            onClick={() => setActiveTab("reviews")}
+            onClick={() => setActiveTab("review")}
           >
             Reviews
           </h2>
@@ -50,11 +70,9 @@ function MoreProductInfo() {
       <div className="container mx-auto mt-10">
         {activeTab === "description" && <MoreProductDesc />}
 
-        {activeTab === "additional-info" && (
-          <MoreProductAdditionalInfo />
-        )}
+        {activeTab === "additional-info" && <MoreProductAdditionalInfo />}
 
-        {activeTab === "reviews" && <ProductReview />}
+        {activeTab === "review" && <ProductReview request={request} />}
       </div>
     </section>
   );
