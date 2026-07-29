@@ -32,7 +32,13 @@ function LoginForm() {
     }
     // api responce
     api
-      .post("/user/auth/login", data)
+      .post(
+        "/user/auth/login",
+        data,
+        {
+          withCredentials: true,
+        },
+      )
       .then((responce) => {
         let userData = responce.data.data.user;
         setsuccess(true);
@@ -56,8 +62,6 @@ function LoginForm() {
         }
       });
   };
-
-
 
   return (
     <div>
@@ -96,8 +100,13 @@ function LoginForm() {
             placeholder="Please enter a password"
           />
 
-  <div  className="flex justify-end">
-            <a  className="[font-family:var(--font-heading)] text-gray-400" href="/register">Do not have an Account ?</a>
+          <div className="flex justify-end">
+            <a
+              className="[font-family:var(--font-heading)] text-gray-400"
+              href="/register"
+            >
+              Do not have an Account ?
+            </a>
           </div>
           <button
             className="bg-[var(--color-primary)] text-white p-2 w-full"
