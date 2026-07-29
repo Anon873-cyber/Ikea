@@ -3,30 +3,28 @@ import { Star } from "lucide-react";
 
 function ProductReview({ review }) {
   const [reviewTypePercentage, setReviewTypePercentage] = useState([
-    { star: "5star", percentage: null },
-    { star: "4star", percentage: null },
-    { star: "3star", percentage: null },
-    { star: "2star", percentage: null },
-    { star: "1star", percentage: null },
+    { star: "5star", percentage: 5 },
+    { star: "4star", percentage: 4 },
+    { star: "3star", percentage: 3 },
+    { star: "2star", percentage: 2 },
+    { star: "1star", percentage: 1 },
   ]);
-
-  
 
   useEffect(() => {
     const totalReview = review.data.length + 1;
 
     review.data.map((review, index) => {
-      reviewTypePercentage[index].percentage = (review.count / totalReview) * 100;
+      reviewTypePercentage[index].percentage =
+        (review.count / totalReview) * 100;
     });
-   console.log(reviewTypePercentage)
-  }, [review,reviewTypePercentage]);
+    console.log(reviewTypePercentage);
+  }, [review, reviewTypePercentage]);
 
   return (
     <section>
       <div className="container">
         <div className="w-[400px] space-y-3">
-
-          {[5, 4, 3, 2, 1].map((rating,index) => (
+          {[5, 4, 3, 2, 1].map((rating, index) => (
             <div key={rating} className="flex items-center gap-2">
               <Star
                 color={rating === 1 ? "red" : "gold"}
@@ -39,8 +37,9 @@ function ProductReview({ review }) {
               <div className="flex-1 h-4 bg-gray-200 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-yellow-400 rounded-full"
-                  style={{ width: `${reviewTypePercentage[index].percentage}%` ||0 }} // Example width
-                  
+                  style={{
+                    width: `${reviewTypePercentage[index].percentage}%`,
+                  }} // Example width
                 />
               </div>
             </div>
