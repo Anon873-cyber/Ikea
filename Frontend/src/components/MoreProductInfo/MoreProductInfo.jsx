@@ -14,14 +14,15 @@ function MoreProductInfo({ productId }) {
     const fetchActiveTab = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/v1/products/6a31a0b2f0f1f7c80b721031/review`,
+          `http://localhost:8000/api/v1/products/${productId}/review`,
           {
             withCredentials: true,
           },
         );
-
-        console.log(response, "responce");
-        setRequest(response.data);
+        if (response) {
+          //console.log(response, "responce");
+          setRequest(response.data);
+        }
       } catch (error) {
         setError(error);
       }
@@ -34,49 +35,50 @@ function MoreProductInfo({ productId }) {
     <section className="MoreProductInfo w-full bg-[#F9F8FE] py-10">
       {/* Tabs */}
       <section className=" flex justify-center items-center flex-col">
-
-      <div className="">
-        <div className="container flex items-center justify-center gap-8">
-          <h2
-            className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
-              activeTab === "description" ? "underline underline-offset-8" : ""
-            }`}
-            onClick={() => setActiveTab("description")}
+        <div className="">
+          <div className="container flex items-center justify-center gap-8">
+            <h2
+              className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
+                activeTab === "description"
+                  ? "underline underline-offset-8"
+                  : ""
+              }`}
+              onClick={() => setActiveTab("description")}
             >
-            Description
-          </h2>
+              Description
+            </h2>
 
-          <h2
-            className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
-              activeTab === "additional-info"
-              ? "underline underline-offset-8"
-              : ""
-            }`}
-            onClick={() => setActiveTab("additional-info")}
+            <h2
+              className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
+                activeTab === "additional-info"
+                  ? "underline underline-offset-8"
+                  : ""
+              }`}
+              onClick={() => setActiveTab("additional-info")}
             >
-            Additional Info
-          </h2>
+              Additional Info
+            </h2>
 
-          <h2
-            className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
-              activeTab === "review" ? "underline underline-offset-8" : ""
-            }`}
-            onClick={() => setActiveTab("review")}
+            <h2
+              className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
+                activeTab === "review" ? "underline underline-offset-8" : ""
+              }`}
+              onClick={() => setActiveTab("review")}
             >
-            Reviews
-          </h2>
+              Reviews
+            </h2>
+          </div>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="container flex items-center justify-center mx-auto mt-10">
-        {activeTab === "description" && <MoreProductDesc />}
+        {/* Content */}
+        <div className="container flex items-center justify-center mx-auto mt-10">
+          {activeTab === "description" && <MoreProductDesc />}
 
-        {activeTab === "additional-info" && <MoreProductAdditionalInfo />}
+          {activeTab === "additional-info" && <MoreProductAdditionalInfo />}
 
-        {activeTab === "review" && <ProductReview review={request} />}
-      </div>
-            </section>
+          {activeTab === "review" && <ProductReview review={request} />}
+        </div>
+      </section>
     </section>
   );
 }
