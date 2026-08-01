@@ -1,6 +1,4 @@
-import React from "react";
-
-function FeaturedShoppingCardSkeleton() {
+function FeaturedCardSkeleton() {
   return (
     <section className="flex flex-col w-[270px] h-[361px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.10)] ">
       {/* Image Area */}
@@ -22,4 +20,4 @@ function FeaturedShoppingCardSkeleton() {
   );
 }
 
-export default FeaturedShoppingCardSkeleton;
+export default FeaturedCardSkeleton;

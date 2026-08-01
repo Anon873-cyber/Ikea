@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import FeaturedShoppngCard from "../Cards/ShopingCard/FeaturedShoppingCard";
+import { useState, useEffect } from "react";
+import FeaturedShoppingCard from "../Cards/ShoppingCard/FeaturedShoppingCard";
 import api from "../../api/axios.js";
-import CardSkletion from "../Skletons/FeaturedCartSkleton.jsx";
+import FeaturedCardSkeleton from "../Skeletons/FeaturedCardSkeleton.jsx";
 import useEmblaCarousel from "embla-carousel-react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -29,7 +29,6 @@ function FeaturedSection() {
           setError(err.message);
         }
       } finally {
-        console.log(products);
         setLoading(false);
       }
     };
@@ -58,10 +57,10 @@ function FeaturedSection() {
           Featured Products
         </h2>
         <div className=" flex  gap-9 items-center justify-center">
-          <CardSkletion />
-          <CardSkletion />
-          <CardSkletion />
-          <CardSkletion />
+          <FeaturedCardSkeleton />
+          <FeaturedCardSkeleton />
+          <FeaturedCardSkeleton />
+          <FeaturedCardSkeleton />
         </div>
       </section>
     );
@@ -94,7 +93,7 @@ function FeaturedSection() {
           <div className="flex p-2">
             {products.map((product) => (
               <div key={product.id} className=" px-4 flex-shrink-0">
-                <FeaturedShoppngCard
+                <FeaturedShoppingCard
                  productId={product._id}
                   productImg={product.images[0].url}
                   price={product.price}

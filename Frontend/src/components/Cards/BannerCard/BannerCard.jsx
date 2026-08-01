@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import GammingBanner from "../Banner/Banner1";
+import GamingBanner from "../Banner/Banner1";
 import SofaBanner from "../Banner/Banner2";
 
 gsap.registerPlugin(useGSAP);
@@ -35,9 +35,9 @@ function BannerCard() {
   }, []);
 
   const slides = [
-    <GammingBanner key={0} onClick={() => goToSlide(0)} />,
+    <GamingBanner key={0} onClick={() => goToSlide(0)} />,
     <SofaBanner    key={1} onClick={() => goToSlide(1)} />,
-    <GammingBanner key={2} onClick={() => goToSlide(2)} />,
+    <GamingBanner key={2} onClick={() => goToSlide(2)} />,
     <SofaBanner    key={3} onClick={() => goToSlide(3)} />,
   ];
 

@@ -5,10 +5,11 @@ function useReviews(productId) {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [page, setPage] = useState(1);
 
   useEffect(() => {
     if (!productId) return;
+
+    const controller = new AbortController();
 
     const fetchReviews = async () => {
       try {
@@ -30,6 +31,8 @@ function useReviews(productId) {
     };
 
     fetchReviews();
+
+    return () => controller.abort();
   }, [productId]);
 
   return { reviews, loading, error };

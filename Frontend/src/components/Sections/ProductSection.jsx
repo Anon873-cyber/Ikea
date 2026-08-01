@@ -6,7 +6,7 @@ import {
 import { Heart, Star } from "lucide-react";
 import { useState } from "react";
 
-export default function ProductDetails({
+export default function ProductSection({
   images = [],
   name,
   price,
