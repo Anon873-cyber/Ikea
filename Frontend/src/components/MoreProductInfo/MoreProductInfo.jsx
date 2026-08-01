@@ -33,47 +33,50 @@ function MoreProductInfo({ productId }) {
   return (
     <section className="MoreProductInfo w-full bg-[#F9F8FE] py-10">
       {/* Tabs */}
-      <div className="flex justify-center items-center">
+      <section className=" flex justify-center items-center flex-col">
+
+      <div className="">
         <div className="container flex items-center justify-center gap-8">
           <h2
             className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
               activeTab === "description" ? "underline underline-offset-8" : ""
             }`}
             onClick={() => setActiveTab("description")}
-          >
+            >
             Description
           </h2>
 
           <h2
             className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
               activeTab === "additional-info"
-                ? "underline underline-offset-8"
-                : ""
+              ? "underline underline-offset-8"
+              : ""
             }`}
             onClick={() => setActiveTab("additional-info")}
-          >
+            >
             Additional Info
           </h2>
 
           <h2
             className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
-              activeTab === "reviews" ? "underline underline-offset-8" : ""
+              activeTab === "review" ? "underline underline-offset-8" : ""
             }`}
             onClick={() => setActiveTab("review")}
-          >
+            >
             Reviews
           </h2>
         </div>
       </div>
 
       {/* Content */}
-      <div className="container mx-auto mt-10">
+      <div className="container flex items-center justify-center mx-auto mt-10">
         {activeTab === "description" && <MoreProductDesc />}
 
         {activeTab === "additional-info" && <MoreProductAdditionalInfo />}
 
         {activeTab === "review" && <ProductReview review={request} />}
       </div>
+            </section>
     </section>
   );
 }
