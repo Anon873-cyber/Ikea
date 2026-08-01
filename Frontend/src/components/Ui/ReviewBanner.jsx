@@ -3,7 +3,7 @@ import { CheckCircle2, Info, AlertTriangle, XCircle } from "lucide-react";
 function ReviewBanner({ avgReview }) {
   return (
     <div
-      className={`rounded-2xl ${avgReview > 3 ? "bg-green-200" : "bg-red-200"}   p-1 pl-10 pr-10 `}
+      className={`rounded-2xl ${avgReview > 3 ? "bg-green-200" : "bg-red-200"}   p-2 w-full `}
     >
       <p
         className="text-nowrap text-gray-800 flex justify-center gap-2 items-center"

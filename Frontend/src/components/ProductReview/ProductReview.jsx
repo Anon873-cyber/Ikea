@@ -53,7 +53,7 @@ function ProductReview({ review }) {
           <div className="font-[var(--font-body)] text-gray-600 text-center text-nowrap">
             Based on {totalReview} reviews
           </div>
-          <div className="flex flex-col gap-4 mt-5 w-400px">
+          <div className="flex flex-col gap-4 mt-5  w-450px p-2">
             <div>
               <ReviewBanner avgReview={avgRating} />
             </div>
@@ -64,7 +64,7 @@ function ProductReview({ review }) {
               rounded-2xl
               w-full
               bg-[var(--color-heading)]
-              px-6 py-4
+              px-4 py-4
               font-[var(--font-heading)]
               text-lg font-semibold text-white
               shadow-lg
