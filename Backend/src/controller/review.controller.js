@@ -58,7 +58,9 @@ const getReviews = async (req, res) => {
     console.log(reviews)
 
     if (!reviews.length) {
-      throw new ApiError(404, "No reviews found for this product");
+       res
+      .status(404)
+      .json(new ApiResponse(404, [], "No reviews found for this product"));
     }
 
     res
