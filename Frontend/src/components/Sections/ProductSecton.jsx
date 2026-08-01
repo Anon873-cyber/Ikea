@@ -30,7 +30,7 @@ export default function ProductDetails({
       : 5;
 
   return (
-    <section className="max-w-6xl mx-auto rounded-md shadow-2xl p-2">
+    <section className="w-6xl mx-auto rounded-md shadow-2xl p-2">
       <div className="flex gap-3">
         <div className="conatainer h-[487px] flex gap-3">
           {/* Left Gallery */}

@@ -61,8 +61,8 @@ function ProductDetails() {
   }
 
   return (
-    <section>
-      <ProductSection
+    <section className="flex flex-col justify-center mt-15 gap-20">
+      <ProductSection className="w-full my-15"
         images={product?.images}
         price={product?.price}
         name={product?.productName}
