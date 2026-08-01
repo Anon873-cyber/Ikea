@@ -1,8 +1,7 @@
-import React from "react";
 import { FiShoppingCart, FiSearch } from "react-icons/fi";
 import { AiOutlineHeart } from "react-icons/ai";
 
-function FeaturedShoppingCard({
+function NewProductCard({
   productImg,
   productName,
   price,
@@ -67,4 +66,4 @@ function FeaturedShoppingCard({
   );
 }
 
-export default FeaturedShoppingCard;
+export default NewProductCard;

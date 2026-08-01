@@ -1,5 +1,4 @@
-import React from "react";
-import ProductSection from "../components/Sections/ProductSecton";
+import ProductSection from "../components/Sections/ProductSection";
 import MoreProductInfo from "../components/MoreProductInfo/MoreProductInfo.jsx";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -25,7 +24,7 @@ function ProductDetails() {
         setProduct(response.data.data[0]);
         setLoading(false);
       } catch (err) {
-            console.log(error,"error message")
+            console.log(err,"error message")
         setError(err.message);
         setLoading(false);
       }

@@ -1,5 +1,4 @@
-import React from "react";
-import NewProdShoppingCard from "../Cards/ShopingCard/NewProdShoppingCart";
+import NewProductCard from "../Cards/ShoppingCard/NewProductCard";
 import { useState, useEffect } from "react";
 import api from "../../api/axios.js";
 
@@ -76,19 +75,21 @@ function LatestProducts() {
         
         {loading ? (
           <p>Loading...</p>
+        ) : error ? (
+          <p className="text-center text-red-600">Error: {error}</p>
         ) : (
-        
-          products.map((product) => (
+      
+            products.map((product) => (
           
-            <NewProdShoppingCard
-              key={product._id}
-              productImg={product.images[0].url}
-              productName={product.productName}
-              price={product.price}
-              discount={product.discount ||10}
-            />
-          ))
-        )}
+              <NewProductCard
+                key={product._id}
+                productImg={product.images[0].url}
+                productName={product.productName}
+                price={product.price}
+                discount={product.discount || 10}
+              />
+            ))
+          )}
       </div>
     </section>
   );
