@@ -16,6 +16,9 @@ function ProductReview({ review }) {
   const [avgRating, setavgRating] = useState(0);
 
   useEffect(() => {
+    if(!review?.data?.length){
+      return
+    }
     const totalReview = review.data.length + 1;
     setTotalEeview(totalReview);
 
@@ -45,15 +48,15 @@ function ProductReview({ review }) {
 
   return (
     <section className="productReview  overflow-hidden w-6xl h-3xl bg-white  rounded-2xl  shadow-xl">
-      <section className="secoand w-[80%] p-10 m-auto flex gap-7 justify-center">
-        <div className="overview flex items-center justify-center flex-col">
+      <section className="secoand w-full h-full p-10  m-auto flex gap-10 justify-center">
+        <div className="overview flex items-center justify-between h-2xl justify-center w-1/2 border-r border-gray-200 flex-col">
           <div className="  ">
             <BasicRating avgRating={avgRating} />
           </div>
           <div className="font-[var(--font-body)] text-gray-600 text-center text-nowrap">
             Based on {totalReview} reviews
           </div>
-          <div className="flex flex-col gap-4 mt-5  w-450px p-2">
+          <div className="flex flex-col gap-6 mt-5  w-450px p-2">
             <div>
               <ReviewBanner avgReview={avgRating} />
             </div>
@@ -78,8 +81,7 @@ function ProductReview({ review }) {
             </div>
           </div>
         </div>
-
-        <div className="w-[700px]  space-y-3">
+        <div className="w-[700px]  flex flex-col justify-between h-2xl space-y-3">
           {[5, 4, 3, 2, 1].map((rating, index) => (
             <div key={rating} className="flex items-center gap-4">
               <div className="flex  items-center gap-2">
