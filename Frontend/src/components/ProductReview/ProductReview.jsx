@@ -53,27 +53,29 @@ function ProductReview({ review }) {
           <div className="font-[var(--font-body)] text-gray-600 text-center text-nowrap">
             Based on {totalReview} reviews
           </div>
-          <div>
-            <ReviewBanner avgReview={avgRating} />
-          </div>
-          <div>
-            <button
-              className="
-    inline-flex items-center justify-center gap-3
-    rounded-2xl
-    w-full
-    bg-[var(--color-heading)]
-    px-6 py-4
-    font-[var(--font-heading)]
-    text-lg font-semibold text-white
-    shadow-lg
-      
-       cursor-pointer
-  "
-            >
-              <NotebookPen size={22} strokeWidth={2.2} />
-              <span>Write a Review</span>
-            </button>
+          <div className="flex flex-col gap-4 mt-5 w-400px">
+            <div>
+              <ReviewBanner avgReview={avgRating} />
+            </div>
+            <div>
+              <button
+                className="
+              inline-flex items-center justify-center gap-3
+              rounded-2xl
+              w-full
+              bg-[var(--color-heading)]
+              px-6 py-4
+              font-[var(--font-heading)]
+              text-lg font-semibold text-white
+              shadow-lg
+              
+              cursor-pointer
+              "
+              >
+                <NotebookPen size={22} strokeWidth={2.2} />
+                <span>Write a Review</span>
+              </button>
+            </div>
           </div>
         </div>
 
