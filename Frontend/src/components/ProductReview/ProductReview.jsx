@@ -6,11 +6,11 @@ import ReviewBanner from "../Ui/ReviewBanner";
 
 function ProductReview({ review }) {
   const [reviewTypePercentage, setReviewTypePercentage] = useState([
-    { star: "5star", percentage: 5, buyers: 0 },
-    { star: "4star", percentage: 4, buyers: 0 },
-    { star: "3star", percentage: 3, buyers: 0 },
-    { star: "2star", percentage: 2, buyers: 0 },
-    { star: "1star", percentage: 1, buyers: 0 },
+    { star: "5star", percentage: 0, buyers: 0 },
+    { star: "4star", percentage: 0, buyers: 0 },
+    { star: "3star", percentage: 0, buyers: 0 },
+    { star: "2star", percentage: 0, buyers: 0 },
+    { star: "1star", percentage: 0, buyers: 0 },
   ]);
   const [totalReview, setTotalEeview] = useState(0);
   const [avgRating, setavgRating] = useState(0);
@@ -47,7 +47,7 @@ function ProductReview({ review }) {
   }, [review]);
 
   return (
-    <section className="productReview  overflow-hidden w-6xl h-3xl bg-white  rounded-2xl  shadow-xl">
+    <section className="productReview  overflow-hidden w-6xl h-3xl bg-white  rounded-xl  shadow-xl">
       <section className="secoand w-full h-full p-10  m-auto flex gap-10 justify-center">
         <div className="overview flex items-center justify-between h-2xl justify-center w-1/2 border-r border-gray-200 flex-col">
           <div className="  ">
