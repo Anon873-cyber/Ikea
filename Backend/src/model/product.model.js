@@ -20,6 +20,18 @@ const ProductSchmea = new mongoose.Schema({
     type:Number,
     default:100
   },
+  weight:{
+    type:Number,
+    default:0
+  },
+  warranty:{
+    type:Number,
+    default:0
+  },
+  return:{
+    type: Boolean,
+    default: false,
+  },
   reviews: {
     type: Number,
     default: 0,
