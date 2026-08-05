@@ -47,7 +47,7 @@ function ProductReview({ review }) {
   }, [review]);
 
   return (
-    <section className="productReview  overflow-hidden w-6xl h-3xl bg-white  rounded-xl  shadow-xl">
+    <section className="productReview  overflow-hidden w-6xl h-3xl bg-white  rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
       <section className="secoand w-full h-full p-10  m-auto flex gap-10 justify-center">
         <div className="overview flex items-center justify-between h-2xl justify-center w-1/2 border-r border-gray-200 flex-col">
           <div className="  ">
