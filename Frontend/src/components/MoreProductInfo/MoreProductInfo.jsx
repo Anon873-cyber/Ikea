@@ -72,7 +72,7 @@ function MoreProductInfo({ productId }) {
 
         {/* Content */}
         <div className="container flex items-center justify-center mx-auto mt-10">
-          {activeTab === "description" && <MoreProductDesc />}
+          {activeTab === "description" && <MoreProductDesc productId={productId} />}
 
           {activeTab === "additional-info" && <MoreProductAdditionalInfo />}
 
