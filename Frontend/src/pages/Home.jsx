@@ -7,7 +7,7 @@ function Shop() {
   return (
     <div className='w-full'>
       <Banner/>
-      <FeaturedSection productQuery={"page=0items=10&category=Furniture"}/>
+      <FeaturedSection />
       <LatestProducts/>
     </div>
   )

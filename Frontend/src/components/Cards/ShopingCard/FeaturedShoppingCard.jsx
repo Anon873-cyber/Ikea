@@ -14,7 +14,7 @@ function FeaturedShoppingCard({ productImg, price, productName, productId }) {
  
   return (
     <section
-      className="group flex flex-col w-[270px] h-[361px] overflow-hidden cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.10)]"
+      className="group flex flex-col w-[270px] h-[361px] overflow-hidden cursor-pointer shadow-[0_4px_10px_rgba(0,0,0,0.10)]"
     >
       {/* Image Area */}
       <div className="relative flex items-center justify-center pt-4 pb-4 px-4 h-[236px] bg-[var(--color-surface-alt)]">

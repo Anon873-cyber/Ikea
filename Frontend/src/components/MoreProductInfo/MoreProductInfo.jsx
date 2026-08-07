@@ -4,11 +4,14 @@ import MoreProductAdditionalInfo from "../MoreProductAdditionalInfo/MoreProductA
 import ProductReview from "../ProductReview/ProductReview";
 import axios from "../../api/axios.js";
 import { useEffect } from "react";
+import FeaturedSection from "../Sections/FeaturedSection.jsx";
 
 function MoreProductInfo({ productId }) {
   const [activeTab, setActiveTab] = useState("description");
   const [error, setError] = useState(false);
   const [request, setRequest] = useState(null);
+  const [category, setCategory] = useState(null);
+  
 
   useEffect(() => {
     const fetchActiveTab = async () => {
@@ -19,9 +22,11 @@ function MoreProductInfo({ productId }) {
             withCredentials: true,
           },
         );
+        
         if (response) {
           //console.log(response, "responce");
           setRequest(response.data);
+          setCategory(response.data.category);
         }
       } catch (error) {
         setError(error);
@@ -30,6 +35,12 @@ function MoreProductInfo({ productId }) {
 
     fetchActiveTab();
   }, [activeTab]);
+
+  useEffect(() => {
+    
+  console.log("Request:", request)
+    }, [request,activeTab]);
+  
 
   return (
     <section className="MoreProductInfo w-full bg-[#F9F8FE] py-10">
@@ -78,6 +89,11 @@ function MoreProductInfo({ productId }) {
 
           {activeTab === "review" && <ProductReview review={request} />}
         </div>
+
+
+      </section>
+      <section className="Similarproduct">
+        <FeaturedSection productQuery={"page=0items=10&category=Furniture"} heading={"Similar products"} arrows={false} />
       </section>
     </section>
   );

@@ -5,23 +5,20 @@ import CardSkletion from "../Skletons/FeaturedCartSkleton.jsx";
 import useEmblaCarousel from "embla-carousel-react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-function FeaturedSection({productQuery}) {
+function FeaturedSection({ productQuery, heading ="Featured Products", arrows=true }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     const controller = new AbortController();
 
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await api.get(
-          `/products/search/?${productQuery}`,
-          {
-            signal: controller.signal,
-          },
-        );
+        const response = await api.get(`/products/search/?${productQuery}`, {
+          signal: controller.signal,
+        });
 
         setProducts(response.data.data);
       } catch (err) {
@@ -69,7 +66,7 @@ function FeaturedSection({productQuery}) {
     return (
       <section className=" flex flex-col  max-w-[1170px] justify-center mt-15 gap-9">
         <h2 className="text-[42px] text-center font-bold text-[var(--color-heading)]">
-          Featured Products
+          {heading}
         </h2>
         <p className="text-center text-red-600 font-medium">Error: {error}</p>
       </section>
@@ -78,24 +75,26 @@ function FeaturedSection({productQuery}) {
   return (
     <section className=" flex flex-col  max-w-7.5xl   m-auto  itens-center justify-center mt-15 gap-9">
       <h2 className="text-[42px] text-center font-bold text-[var(--color-heading)]">
-        Featured Products
+       {heading}
       </h2>
       <div className="conatiner flex justify-center items-center gap-3">
-        <div className=" lef button">
-          <button
-            onClick={previousSlide}
-            aria-label="Previous slide"
-            className="px-4 py-2 rounded bg-gray-200"
-          >
-            <FaArrowLeft />
-          </button>
-        </div>
-        <div className="overflow-hidden w-[1200px] " ref={emblaRef}>
-          <div className="flex p-2">
+        {arrows && (
+          <div className="lef button">
+            <button
+              onClick={previousSlide}
+              aria-label="Previous slide"
+              className="px-4 py-2 rounded bg-gray-200"
+            >
+              <FaArrowLeft />
+            </button>
+          </div>
+        )}
+        <div className="overflow-hidden w-6xl " ref={emblaRef}>
+          <div className="flex gap-2">
             {products.map((product) => (
-              <div key={product.id} className=" px-4 flex-shrink-0">
+              <div key={product.id} className=" px-2 flex-shrink-0">
                 <FeaturedShoppngCard
-                 productId={product._id}
+                  productId={product._id}
                   productImg={product.images[0].url}
                   price={product.price}
                   productName={product.productName}
@@ -104,15 +103,17 @@ function FeaturedSection({productQuery}) {
             ))}
           </div>
         </div>
-        <div className="right-button">
-          <button
-            onClick={nextSlide}
-            aria-label="Next slide"
-            className="px-4 py-2 rounded bg-gray-200"
-          >
-            <FaArrowRight />
-          </button>
-        </div>
+        {arrows && (
+          <div className="right-button">
+            <button
+              onClick={nextSlide}
+              aria-label="Next slide"
+              className="px-4 py-2 rounded bg-gray-200"
+            >
+              <FaArrowRight />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
