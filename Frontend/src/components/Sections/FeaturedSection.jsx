@@ -5,7 +5,7 @@ import CardSkletion from "../Skletons/FeaturedCartSkleton.jsx";
 import useEmblaCarousel from "embla-carousel-react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-function FeaturedSection() {
+function FeaturedSection({productQuery}) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +17,7 @@ function FeaturedSection() {
       try {
         setLoading(true);
         const response = await api.get(
-          "/products/search/?page=0items=10&category=Furniture",
+          `/products/search/?${productQuery}`,
           {
             signal: controller.signal,
           },
