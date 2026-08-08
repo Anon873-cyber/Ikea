@@ -73,7 +73,7 @@ function FeaturedSection({ productQuery, heading ="Featured Products", arrows=tr
     );
 
   return (
-    <section className=" flex flex-col  max-w-7.5xl   m-auto  itens-center justify-center mt-15 gap-9">
+    <section className=" flex flex-col  max-w-7.5xl   m-auto  itens-center justify-center  gap-9">
       <h2 className="text-[42px] text-center font-bold text-[var(--color-heading)]">
        {heading}
       </h2>
@@ -89,7 +89,7 @@ function FeaturedSection({ productQuery, heading ="Featured Products", arrows=tr
             </button>
           </div>
         )}
-        <div className="overflow-hidden w-6xl " ref={emblaRef}>
+        <div className="overflow-hidden w-6xl py-2 pt-2" ref={emblaRef}>
           <div className="flex gap-2">
             {products.map((product) => (
               <div key={product.id} className=" px-2 flex-shrink-0">
