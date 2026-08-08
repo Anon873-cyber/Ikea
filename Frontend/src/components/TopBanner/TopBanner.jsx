@@ -32,12 +32,13 @@ function TopBanner() {
               <NavLink to="/login">Login</NavLink>
             )}
           </li>
-          <li className="text-[var(--color-surface)] flex gap-2 items-center font-medium text-[14px] [font-family:var(--font-primary)]">
+          <li className="text-[var(--color-surface)] flex gap-2 items-center font-medium cursor-pointer text-[14px] [font-family:var(--font-primary)]">
             <RiHeart3Line size={16} />
-            Wishlist
+            <NavLink to="/wishlist">Wishlist</NavLink>
           </li>
-          <li className="text-[var(--color-surface)] flex gap-2 items-center font-medium text-[14px] [font-family:var(--font-primary)]">
+          <li className="text-[var(--color-surface)] flex gap-2 items-center font-medium cursor-pointer text-[14px] [font-family:var(--font-primary)]">
             <RiShoppingCartLine size={16} />
+            <NavLink to="/cart">Cart</NavLink>
           </li>
         </ul>
       </div>
