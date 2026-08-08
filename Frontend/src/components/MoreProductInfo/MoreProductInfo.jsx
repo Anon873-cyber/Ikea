@@ -92,13 +92,6 @@ function MoreProductInfo({ productId }) {
         </section>
       </section>
 
-      <section className="Similarproduct">
-        <FeaturedSection
-          productQuery={"page=0items=10&category=Furniture"}
-          heading={"Similar products"}
-          arrows={false}
-        />
-      </section>
     </>
   );
 }

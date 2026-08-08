@@ -2,6 +2,7 @@ import React from "react";
 import ProductSection from "../components/Sections/ProductSecton";
 import MoreProductInfo from "../components/MoreProductInfo/MoreProductInfo.jsx";
 import { useParams } from "react-router-dom";
+import FeaturedSection from "../components/Sections/FeaturedSection.jsx";
 import { useState, useEffect } from "react";
 import api from "../api/axios.js";
 
@@ -71,6 +72,14 @@ function ProductDetails() {
         tags={product?.tags}
       />
       <MoreProductInfo productId={productId} />
+      
+      <section className="Similarproduct">
+        <FeaturedSection
+          productQuery={"page=0items=10&category=" + product?.category}
+          heading={"Similar products"}
+          arrows={false}
+        />
+      </section>
     </section>
   );
 }
