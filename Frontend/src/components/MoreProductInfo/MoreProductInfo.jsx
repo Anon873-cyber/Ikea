@@ -11,7 +11,6 @@ function MoreProductInfo({ productId }) {
   const [error, setError] = useState(false);
   const [request, setRequest] = useState(null);
   const [category, setCategory] = useState(null);
-  
 
   useEffect(() => {
     const fetchActiveTab = async () => {
@@ -22,7 +21,7 @@ function MoreProductInfo({ productId }) {
             withCredentials: true,
           },
         );
-        
+
         if (response) {
           //console.log(response, "responce");
           setRequest(response.data);
@@ -37,65 +36,70 @@ function MoreProductInfo({ productId }) {
   }, [activeTab]);
 
   useEffect(() => {
-    
-  console.log("Request:", request)
-    }, [request,activeTab]);
-  
+    console.log("Request:", request);
+  }, [request, activeTab]);
 
   return (
-    <section className="MoreProductInfo w-full bg-[#F9F8FE] py-10">
-      {/* Tabs */}
-      <section className=" flex justify-center items-center flex-col">
-        <div className="">
-          <div className="container flex items-center justify-center gap-8">
-            <h2
-              className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
-                activeTab === "description"
-                  ? "underline underline-offset-8"
-                  : ""
-              }`}
-              onClick={() => setActiveTab("description")}
-            >
-              Description
-            </h2>
+    <>
+      <section className="MoreProductInfo w-full bg-[#F9F8FE] py-10">
+        {/* Tabs */}
+        <section className=" flex justify-center items-center flex-col">
+          <div className="">
+            <div className="container flex items-center justify-center gap-8">
+              <h2
+                className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
+                  activeTab === "description"
+                    ? "underline underline-offset-8"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("description")}
+              >
+                Description
+              </h2>
 
-            <h2
-              className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
-                activeTab === "additional-info"
-                  ? "underline underline-offset-8"
-                  : ""
-              }`}
-              onClick={() => setActiveTab("additional-info")}
-            >
-              Additional Info
-            </h2>
+              <h2
+                className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
+                  activeTab === "additional-info"
+                    ? "underline underline-offset-8"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("additional-info")}
+              >
+                Additional Info
+              </h2>
 
-            <h2
-              className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
-                activeTab === "review" ? "underline underline-offset-8" : ""
-              }`}
-              onClick={() => setActiveTab("review")}
-            >
-              Reviews
-            </h2>
+              <h2
+                className={`text-xl text-[var(--color-heading)] font-medium font-[var(--font-heading)] cursor-pointer ${
+                  activeTab === "review" ? "underline underline-offset-8" : ""
+                }`}
+                onClick={() => setActiveTab("review")}
+              >
+                Reviews
+              </h2>
+            </div>
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="container flex items-center justify-center mx-auto mt-10">
-          {activeTab === "description" && <MoreProductDesc productId={productId} />}
+          {/* Content */}
+          <div className="container flex items-center justify-center mx-auto mt-10">
+            {activeTab === "description" && (
+              <MoreProductDesc productId={productId} />
+            )}
 
-          {activeTab === "additional-info" && <MoreProductAdditionalInfo />}
+            {activeTab === "additional-info" && <MoreProductAdditionalInfo />}
 
-          {activeTab === "review" && <ProductReview review={request} />}
-        </div>
-
-
+            {activeTab === "review" && <ProductReview review={request} />}
+          </div>
+        </section>
       </section>
+
       <section className="Similarproduct">
-        <FeaturedSection productQuery={"page=0items=10&category=Furniture"} heading={"Similar products"} arrows={false} />
+        <FeaturedSection
+          productQuery={"page=0items=10&category=Furniture"}
+          heading={"Similar products"}
+          arrows={false}
+        />
       </section>
-    </section>
+    </>
   );
 }
 
