@@ -13,29 +13,23 @@ function ProductDetails() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
- 
-
     const fetchProducts = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        const response = await api.get(`/products/${productId}`, {
-       
-        });
+        const response = await api.get(`/products/${productId}`, {});
         setProduct(response.data.data[0]);
         setLoading(false);
       } catch (err) {
-            console.log(error,"error message")
+        console.log(error, "error message");
         setError(err.message);
         setLoading(false);
       }
     };
 
     fetchProducts();
-
-    
-  }, [productId]); 
+  }, [productId]);
   if (loading) {
     return (
       <section className="flex flex-col justify-center mt-15 gap-9">
@@ -52,7 +46,6 @@ function ProductDetails() {
     );
   }
 
- 
   if (!product) {
     return (
       <section className="flex flex-col justify-center mt-15 gap-9">
@@ -62,8 +55,9 @@ function ProductDetails() {
   }
 
   return (
-    <section className="flex flex-col justify-center mt-15 gap-20">
-      <ProductSection className="w-full my-15"
+    <section className="flex flex-col justify-center mt-15 gap-10">
+      <ProductSection
+        className="w-full my-15"
         images={product?.images}
         price={product?.price}
         name={product?.productName}
@@ -72,7 +66,7 @@ function ProductDetails() {
         tags={product?.tags}
       />
       <MoreProductInfo productId={productId} />
-      
+
       <section className="Similarproduct">
         <FeaturedSection
           productQuery={"page=0items=10&category=" + product?.category}
@@ -80,6 +74,9 @@ function ProductDetails() {
           arrows={false}
         />
       </section>
+      <div className="max-w-[904px]  m-auto mt-15">
+        <img src="/img/brand.png" alt="our brands" />
+      </div>
     </section>
   );
 }
