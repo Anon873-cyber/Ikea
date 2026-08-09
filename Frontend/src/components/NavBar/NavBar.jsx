@@ -14,17 +14,19 @@ function NavBar() {
             <NavLink to="/">Home</NavLink>
           </li>
           <li className="text-(--color-text) text-[16px] [font-family:var(--font-body)]">
+            <NavLink to="/about">About</NavLink>
+          </li>
+          <li className="text-(--color-text) text-[16px] [font-family:var(--font-body)]">
             <NavLink to="/products">Products</NavLink>
+          </li>
+          <li className="text-(--color-text) text-[16px] [font-family:var(--font-body)]">
+            <NavLink to="/shop">Shop</NavLink>
           </li>
           <li className="text-(--color-text) text-[16px] [font-family:var(--font-body)]">
             <NavLink to="/contact">Contact</NavLink>
           </li>
-          <li className="text-(--color-text) text-[16px] [font-family:var(--font-body)]">
-            <NavLink to="/wishlist">Wishlist</NavLink>
-          </li>
-          <li className="text-(--color-text) text-[16px] [font-family:var(--font-body)]">
-            <NavLink to="/cart">Cart</NavLink>
-          </li>
+        
+          
         </ul>
 
         <SearchBar />
