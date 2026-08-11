@@ -2,7 +2,7 @@ import React from "react";
 import { Trash2 as TrashIcon } from "lucide-react";
 
 
-function Item() {
+function Item({item}) {
   return (
     <section className="item">
       <div className="container">
