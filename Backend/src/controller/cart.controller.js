@@ -78,9 +78,10 @@ const editOrDeleteCartItem = async (req, res) => {
 const getCartItems = async (req, res) => {
   try {
     const userId = req.user._id;
+    const wishlist = req.query.wishlist === "true" ? true : false;
     const cartItems = await ProductOrder.find({
       userId,
-      wishlist: false,
+      wishlist: wishlist,
     }).populate("productId");
     res
       .status(200)
