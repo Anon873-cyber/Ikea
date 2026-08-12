@@ -4,8 +4,9 @@ import NoWishList from "./NoWishlist";
 import Item from "../Ui/Item";
 
 function WishList() {
-  const { data, isLoading, error } = useFetch("/cart");
+  const { data, isLoading, error } = useFetch("/cart?wishlist=true");
 
+  console.log(data,"data response");
   if (isLoading) {
     return <div>Loading ....</div>;
   }
@@ -17,16 +18,19 @@ function WishList() {
   if (!data.length) {
     return <NoWishList />;
   }
-  console.log(data, "data data");
+ 
   return (
     <section className="Wish-list-items">
       <div className="top">
         <h1 className="[font-family:var(--font-primary)]">My Wishlist</h1>
         <p>Save products you love and come back to them anytime</p>
       </div>
-      {data.data.map((item) => {
-        <Item item={item} />;
-      })}
+      {data.map((item) => (
+        <div>
+
+        <Item item={item.productId} />;
+        </div>
+      ))}
     </section>
   );
 }
