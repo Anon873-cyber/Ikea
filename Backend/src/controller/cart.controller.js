@@ -82,7 +82,7 @@ const getCartItems = async (req, res) => {
     const cartItems = await ProductOrder.find({
       userId,
       wishlist: wishlist,
-    }).populate("productId");
+    }).populate("productId").select("-userId -__v -createdAt -updatedAt");
     res
       .status(200)
       .json(
