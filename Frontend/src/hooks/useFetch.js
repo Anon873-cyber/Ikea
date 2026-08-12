@@ -13,7 +13,7 @@ const useFetch = (url='/cart', options = {},method = 'get') => {
       try {
         const response = await axios[method](url, options);
         console.log(response.data)
-        setData(response.data);
+        setData(response.data.data);
       } catch (err) {
         setError(err.message);
       } finally {
