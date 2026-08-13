@@ -59,11 +59,13 @@ const editOrDeleteCartItem = async (req, res) => {
         .json(new ApiResponse(200, deletedItem, "Product removed from cart"));
       return;
     } else {
+      
       const updatedItem = await ProductOrder.findOneAndUpdate(
-        { productId, userId },
-        { $set: { quantity: req.body.quantity, wishlist: req.body.wishlist } },
+        { _id: productId, userId },
+        { $set: { quantity: req?.query?.quantity, wishlist: req.query.wishlist } },
         { new: true },
       );
+    
       res
         .status(200)
         .json(new ApiResponse(200, updatedItem, "Product updated in cart"));
