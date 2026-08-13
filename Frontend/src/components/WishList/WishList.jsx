@@ -3,10 +3,30 @@ import useFetch from "../../hooks/useFetch";
 import NoWishList from "./NoWishlist";
 import Item from "../Ui/Item";
 import { useState } from "react";
+import CheckoutBar from "../Ui/CheckOutBar";
+import  onDelete  from "../../utils/onDelete";
 
 function WishList() {
-  const { data, isLoading, error } = useFetch("/cart?wishlist=true");
+  const { data, isLoading, error, refetch } = useFetch("/cart?wishlist=true");
   const [TotalPrice, setTotalPrice] = useState(0);
+  
+  const handleDelete = async (id) => {
+    console.log("Calling Handle Delete")
+   const response =  await onDelete(id);
+   console.log(response,"responce")
+  
+   if (response.success) {
+        refetch(); 
+
+   }
+   if (isLoading) {
+     // Handle loading state
+   }
+    if (error) {
+      // Handle error state
+    }
+  }
+ 
 
   console.log(data, "data response");
   if (isLoading) {
@@ -35,11 +55,13 @@ function WishList() {
 
         {data.map((item) => (
           <div>
-            <Item item={item.productId} />
+            <Item item={item.productId} handleDelete={() => { handleDelete(item._id) }} />
           </div>
         ))}
       </div>
-      
+      <section className="checkout">
+        <CheckoutBar/>
+      </section>
 
 
     </section>
