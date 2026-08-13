@@ -5,6 +5,8 @@ import Item from "../Ui/Item";
 import { useState } from "react";
 import CheckoutBar from "../Ui/CheckOutBar";
 import  onDelete  from "../../utils/onDelete";
+import api from "../../api/axios";
+
 
 function WishList() {
   const { data, isLoading, error, refetch } = useFetch("/cart?wishlist=true");
@@ -26,9 +28,7 @@ function WishList() {
       // Handle error state
     }
   }
- 
-
-  console.log(data, "data response");
+   console.log(data, "data response");
   if (isLoading) {
     return <div>Loading ....</div>;
   }
@@ -40,6 +40,18 @@ function WishList() {
   if (!data.length) {
     return <NoWishList />;
   }
+
+  const handleMoveToCart = async (itemId) => {
+   
+    const response = await api.put(`/cart/${itemId}?wishlist=false`);
+  
+      if (response.data.success) {
+        refetch()
+      }
+      //Todo : handle loading and error 
+
+  }
+
 
   return (
     <section className="Wish-list-items ">
@@ -55,7 +67,7 @@ function WishList() {
 
         {data.map((item) => (
           <div>
-            <Item item={item.productId} handleDelete={() => { handleDelete(item._id) }} />
+            <Item item={item.productId} handleDelete={() => { handleDelete(item._id) }} handleMoveToCart={() => { handleMoveToCart(item._id) }} />
           </div>
         ))}
       </div>
