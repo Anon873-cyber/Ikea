@@ -43,17 +43,14 @@ const addToCartOrWishlist = async (req, res) => {
 
 const editOrDeleteCartItem = async (req, res) => {
   try {
-    const { productId } = req.params;
-    const userId = req.user._id;
-    const deleteParams = req.params.delete === "true" ? true : false;
-    const product = await Product.findOne(productId, userId);
-    if (!product) {
-      throw new ApiError(404, "Product not found");
-    }
-
+    const productId = new mongoose.Types.ObjectId(req.params.productId);
+    const userId = new mongoose.Types.ObjectId(req.user._id);
+    console.log("userId", userId, "productId", productId);
+    const deleteParams = req.query.delete;
+    console.log("deleteParams", deleteParams);
     if (deleteParams) {
       const deletedItem = await ProductOrder.findOneAndDelete({
-        productId,
+        _id:productId,
         userId,
       });
 
@@ -61,15 +58,16 @@ const editOrDeleteCartItem = async (req, res) => {
         .status(200)
         .json(new ApiResponse(200, deletedItem, "Product removed from cart"));
       return;
+    } else {
+      const updatedItem = await ProductOrder.findOneAndUpdate(
+        { productId, userId },
+        { $set: { quantity: req.body.quantity, wishlist: req.body.wishlist } },
+        { new: true },
+      );
+      res
+        .status(200)
+        .json(new ApiResponse(200, updatedItem, "Product updated in cart"));
     }
-    const updatedItem = await ProductOrder.findOneAndUpdate(
-      { productId, userId },
-      { $set: { quantity: req.body.quantity, wishlist: req.body.wishlist } },
-      { new: true },
-    );
-    res
-      .status(200)
-      .json(new ApiResponse(200, updatedItem, "Product updated in cart"));
   } catch (error) {
     throw new ApiError(500, error.message);
   }
