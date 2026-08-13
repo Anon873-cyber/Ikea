@@ -1,7 +1,7 @@
 import React from "react";
 import { Trash2 as TrashIcon } from "lucide-react";
 
-function Item({ item }) {
+function Item({ item, handleDelete,handleMoveToCart }) {
   console.log("item component");
   console.log(item, "item ");
   return (
@@ -28,11 +28,11 @@ function Item({ item }) {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
-          <button className="rounded-lg p-2 hover:bg-red-100">
+          <button className="rounded-lg p-2 hover:bg-red-100" onClick={handleDelete}>
             <TrashIcon size={20} />
           </button>
 
-          <button className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-white hover:bg-gray-800">
+          <button className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-white hover:bg-gray-800" onClick={handleMoveToCart}>
             Move to Cart
           </button>
         </div>
